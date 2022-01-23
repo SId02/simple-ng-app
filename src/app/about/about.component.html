@@ -1,0 +1,47 @@
+<div class="about p-5" id="about">
+	<div class="container">
+	  <h1 class="text-center">About Me</h1>
+		<div class="row">
+			<div class="col-lg-4 col-md-4 col-sm-12">
+				<img src="/src/assets/img/Simple-NG-App.JPG" class="img-fluid">
+				<span class="text-justify"></span>
+			</div>
+			<div class="col-lg-8 col-md-8 col-sm-12 desc " style="border-left: 2px solid gray;">
+			  
+				<h3>Simple-ng-app</h3>
+				<p>
+				   Simple-ng-app is app made using Angular 12 with bootstrap for UI
+				   It is collection of concept in Angular
+				   like Navigation ,HttpClient For api call,Form validation.
+				</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+<hr>
+
+<div class="container">
+	<div class="row">
+		<div class="col-6">
+			<h1>Toggle a Div on Button Click 
+			</h1>
+			<button class="btn btn-primary gap-2" (click)=toggleDisplayDiv() >Toggle display Div</button>
+			<div [hidden]="isShowDiv">Toggle a Div on Button Click</div>
+		</div>
+		<div class="col-6">
+			<h1>Counter</h1>
+				<div >
+					<p>You've clicked <span
+						(click)="countClick()"><button class="btn btn-primary gap-2"  >Add</button></span> {{ clickCounter }} times.</p>
+					
+						<p>You've clicked <span
+							(click)="countClick2()"><button class="btn btn-primary gap-2" >Subtract</button></span> {{ clickCounter2 }} times.</p>
+				</div>
+
+				
+
+		</div>
+	</div>
+</div>
+
