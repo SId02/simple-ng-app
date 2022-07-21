@@ -1,5 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import UsersJson from '../users.json';
 
+interface USERS {
+  id: Number;
+  name: String;
+  username: String;
+  email: String;
+}
 @Component({
   selector: 'app-about',
   templateUrl: './about.component.html',
@@ -7,7 +14,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AboutComponent implements OnInit {
 
-  constructor() { }
+
+  Users: USERS[] = UsersJson;
+  constructor(){
+    console.log(this.Users);
+  }
 
   ngOnInit(): void {
   }

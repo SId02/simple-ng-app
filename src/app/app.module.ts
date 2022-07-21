@@ -11,6 +11,7 @@ import { FooterComponent } from './footer/footer.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,6 +20,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     ContactComponent,
     AboutComponent,
     FooterComponent,
+
 
   ],
   imports: [
