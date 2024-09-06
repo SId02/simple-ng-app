@@ -8,5 +8,9 @@ import { Component } from '@angular/core';
   styleUrl: './darklightmode.component.css'
 })
 export class DarklightmodeComponent {
+  isDarkMode: boolean = false;
 
+     handleToggle(): void {
+       this.isDarkMode = !this.isDarkMode;
+     }
 }
