@@ -10,7 +10,7 @@ import { Component } from '@angular/core';
 export class DarklightmodeComponent {
   isDarkMode: boolean = false;
 
-     handleToggle(): void {
-       this.isDarkMode = !this.isDarkMode;
-     }
+  handleToggle(): void {
+    this.isDarkMode = !this.isDarkMode;
+  }
 }
