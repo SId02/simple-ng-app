@@ -66,9 +66,11 @@ For more information on using the Angular CLI, including detailed command refere
 
 
 
-
+####  To generate a new component
+```bash
 ng generate component component-name
-
+```
+```bash
 ng generate component components/home
 ng generate component components/about
 ng generate component components/contact
@@ -78,10 +80,13 @@ ng generate component components/infinitescroll
 ng generate component components/passwordgenerator
 ng generate component components/testimonial
 ng generate component components/tip-calculator
-ng generate component components/about
-
-
+ng generate component components/usersdetails
+ng generate component components/pokemon
+```
+```bash
 ng generate component layout/navbar
 ng generate component layout/footer
-
+```
+```bash
  ng generate service services/data
+ ```

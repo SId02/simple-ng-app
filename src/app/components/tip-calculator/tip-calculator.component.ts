@@ -9,7 +9,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class TipCalculatorComponent {
   billAmount: number = 0;
-  tipPercentage: number = 15; // Default tip percentage
+  tipPercentage: number = 15; 
   totalAmount: number = 0;
 
   calculateTip() {

@@ -8,6 +8,7 @@ import { TestimonialComponent } from './components/testimonial/testimonial.compo
 import { CounterComponent } from './components/counter/counter.component';
 import { DarklightmodeComponent } from './components/darklightmode/darklightmode.component';
 import { InfinitescrollComponent } from './components/infinitescroll/infinitescroll.component';
+import {PokemonComponent} from './components/pokemon/pokemon.component';
 export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'about', component: AboutComponent },
@@ -18,4 +19,5 @@ export const routes: Routes = [
   { path: 'counter', component: CounterComponent },
   { path: 'darklightmode', component: DarklightmodeComponent },
   { path: 'infinitescroll', component: InfinitescrollComponent },
+  {path:'pokemon',component: PokemonComponent}
 ];
