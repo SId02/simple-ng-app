@@ -1,3 +1,69 @@
+/* Container and Card Styles */
 .container {
-    margin-top: 50px;
+  max-width: 600px;
+}
+
+.card {
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Count Display Styles */
+.count-display {
+  font-weight: bold;
+  transition: color 0.5s ease;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.count-display.text-success {
+  background-color: rgba(25, 135, 84, 0.1);
+}
+
+.count-display.text-danger {
+  background-color: rgba(220, 53, 69, 0.1);
+}
+
+.count-display.text-secondary {
+  background-color: rgba(108, 117, 125, 0.1);
+}
+
+/* Button Styles */
+.increment-btn,
+.decrement-btn,
+.reset-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.increment-btn:hover {
+  background-color: rgba(25, 135, 84, 0.2);
+}
+
+.decrement-btn:hover {
+  background-color: rgba(220, 53, 69, 0.2);
+}
+
+.reset-btn:hover {
+  background-color: rgba(108, 117, 125, 0.2);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 576px) {
+  .d-flex {
+    flex-direction: column;
+    gap: 10px;
   }
+  
+  .btn {
+    width: 100%;
+  }
+}
