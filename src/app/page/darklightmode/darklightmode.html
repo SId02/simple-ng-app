@@ -1,0 +1,13 @@
+<div class="container">
+    <section class="hero" [class.is-dark]="isDarkMode" [class.is-light]="!isDarkMode">
+        <div class="hero-body">
+          <div class="container">
+            <p class="title">Half height hero</p>
+            <p class="subtitle">Half height subtitle</p>
+            <button class="btn btn-primary" (click)="handleToggle()">
+              {{ isDarkMode ? 'Switch to light mode' : 'Switch to dark mode' }}
+            </button>
+          </div>
+        </div>
+      </section>
+</div>

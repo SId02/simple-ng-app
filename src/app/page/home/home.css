@@ -1,0 +1,7 @@
+.gradient-hr {
+    border: none;
+    height: 5px; 
+    background-image: linear-gradient(to right, #007bff, #28a745); 
+    margin: 20px auto; 
+    width: 50%; 
+}

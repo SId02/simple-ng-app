@@ -1,0 +1,7 @@
+.carousel-item {
+    text-align: center;
+  }
+
+  .carousel-item img {
+    border-radius: 50%; /* Make the images circular */
+  }

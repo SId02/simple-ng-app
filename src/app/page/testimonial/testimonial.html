@@ -1,0 +1,21 @@
+<div class="container">
+    <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img [src]="testimonials[currentTestimonial].image" class="d-block w-25 mx-auto" alt="User Images">
+            <div class="carousel-caption d-none d-md-block">
+              <h5>{{ testimonials[currentTestimonial].name }}</h5>
+              <p>{{ testimonials[currentTestimonial].message }}</p>
+            </div>
+          </div>
+        </div>
+        <button class="carousel-control-prev" (click)="prevTestimonial()" type="button" aria-label="Previous">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" (click)="nextTestimonial()" type="button" aria-label="Next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+</div>
