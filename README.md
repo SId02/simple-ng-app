@@ -2,6 +2,10 @@
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.5.
 
+
+[Angular CLI](https://simple-ng-app.vercel.app/)
+
+
 ## Development server
 
 To start a local development server, run:
@@ -18,12 +22,6 @@ Angular CLI includes powerful code scaffolding tools. To generate a new componen
 
 ```bash
 ng generate component component-name
-```
-
-To generate a new service, run:
-
-```bash
- ng generate service services/data 
 ```
 
 For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
@@ -63,30 +61,3 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 ## Additional Resources
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
-
-
-
-####  To generate a new component
-```bash
-ng generate component component-name
-```
-```bash
-ng generate component components/home
-ng generate component components/about
-ng generate component components/contact
-ng generate component components/counter
-ng generate component components/darklightmode
-ng generate component components/infinitescroll
-ng generate component components/passwordgenerator
-ng generate component components/testimonial
-ng generate component components/tip-calculator
-ng generate component components/usersdetails
-ng generate component components/pokemon
-```
-```bash
-ng generate component layout/navbar
-ng generate component layout/footer
-```
-```bash
- ng generate service services/data
- ```

@@ -1,0 +1,76 @@
+<section class="min-vh-100 bg-light py-5">
+  <div class="container">
+    <div class="card shadow">
+      <div class="card-body">
+        <h1 class="text-center text-primary mb-4">Weather App</h1>
+
+        <div class="text-center mb-4">
+          <button class="btn btn-info me-2" [class.active]="showWorldCities" (click)="toggleCities(true)">
+            Top World Cities
+          </button>
+          <button class="btn btn-primary" [class.active]="!showWorldCities" (click)="toggleCities(false)">
+            Top Indian Cities
+          </button>
+        </div>
+
+        <h5 class="text-secondary mb-2">
+          {{ showWorldCities ? 'Top 10 Cities in the World' : 'Top 10 Cities in India' }}
+        </h5>
+
+        <div *ngIf="loadingTopCities" class="text-center my-4">
+          <div class="spinner-border text-info" role="status"></div>
+        </div>
+
+        <div class="row" *ngIf="!loadingTopCities">
+          <div
+            class="col-6 col-md-3 mb-3"
+            *ngFor="let data of (showWorldCities ? worldCitiesWeather : indiaCitiesWeather)"
+          >
+            <div
+              class="p-3 rounded shadow-sm text-center bg-light border pointer"
+              [ngClass]="showWorldCities ? 'border-info' : 'border-primary'"
+              (click)="handleCitySuggestion(data.city)"
+              style="cursor: pointer;"
+            >
+              <strong>{{ data.city }}, {{ data.country }}</strong>
+              <div><i class="bi bi-thermometer-half text-warning"></i> {{ data.temperature }}°C</div>
+              <div><i class="bi bi-cloud text-info"></i> {{ getWeatherDescription(data.weathercode) }}</div>
+              <div><i class="bi bi-wind text-secondary"></i> {{ data.windspeed }} km/h</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="input-group mt-4">
+          <span class="input-group-text"><i class="bi bi-building"></i></span>
+          <input type="text" class="form-control" placeholder="Enter city name..." [(ngModel)]="city" />
+          <button class="btn btn-info" (click)="handleSearch()" [disabled]="loading">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm me-2"></span>Search
+          </button>
+        </div>
+
+        <div *ngIf="loading" class="text-center my-5">
+          <div class="spinner-border text-info"></div>
+        </div>
+
+        <div *ngIf="weatherData && !loading" class="card mt-4 mx-auto" style="max-width: 400px;">
+          <div class="card-body text-center">
+            <h2 class="text-primary mb-2">{{ weatherData.city }}, {{ weatherData.country }}</h2>
+            <p class="fs-2 text-warning">
+              <i class="bi bi-thermometer-half"></i> {{ weatherData.temperature }}°C
+            </p>
+            <p class="text-info"><i class="bi bi-cloud"></i> {{ getWeatherDescription(weatherData.weathercode) }}</p>
+            <p class="text-secondary">
+              <i class="bi bi-wind"></i> Wind Speed: <strong>{{ weatherData.windspeed }} km/h</strong>
+            </p>
+          </div>
+        </div>
+
+        <div *ngIf="errorMessage" class="alert alert-danger text-center mt-4">{{ errorMessage }}</div>
+
+        <div class="text-center mt-4">
+          <p>Powered by <a href="https://open-meteo.com/" target="_blank" rel="noopener">Open‑Meteo</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

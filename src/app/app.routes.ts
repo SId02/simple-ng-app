@@ -11,7 +11,7 @@ import { Inifintescroll } from './page/inifintescroll/inifintescroll';
 import {Pokemon} from './page/pokemon/pokemon';
 import { UserList } from './page/user-list/user-list';
 import { UserForm } from './page/user-form/user-form';
-
+import { WeatherChecker } from './page/weather-checker/weather-checker';
 export const routes: Routes = [
   { path: '', component: Home },
   { path: 'about', component: About },
@@ -26,5 +26,6 @@ export const routes: Routes = [
   { path: 'userlist', component: UserList },
   { path: 'add', component: UserForm },
   { path: 'edit/:id', component: UserForm },
+  {path: 'weatherchecker', component: WeatherChecker },
   { path: '**', redirectTo: '' },
 ];

@@ -1,0 +1,5 @@
+.pointer:hover {
+      background-color: #f8f9fa;
+      transform: scale(1.02);
+      transition: 0.2s;
+    }
