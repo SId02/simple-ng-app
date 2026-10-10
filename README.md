@@ -3,7 +3,7 @@
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.5.
 
 
-[Angular CLI](https://simple-ng-app.vercel.app/)
+[simple-ng-app](https://simple-ng-app.vercel.app/)
 
 
 ## Development server
