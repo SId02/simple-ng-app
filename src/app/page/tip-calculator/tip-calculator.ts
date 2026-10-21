@@ -1,18 +1,37 @@
-import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { Component, signal } from '@angular/core';
+
 @Component({
+  imports: [],
   selector: 'app-tip-calculator',
-  imports: [FormsModule],
+  styleUrl: './tip-calculator.css',
   templateUrl: './tip-calculator.html',
-  styleUrl: './tip-calculator.css'
 })
 export class TipCalculator {
- billAmount: number = 0;
-  tipPercentage: number = 15; 
-  totalAmount: number = 0;
+  readonly billAmount = signal<number>(0);
+  readonly tipPercentage = signal<number>(15);
+  readonly tipAmount = signal<number>(0);
+  readonly totalAmount = signal<number>(0);
+  readonly hasCalculated = signal<boolean>(false);
 
-  calculateTip() {
-    const tip = (this.billAmount * this.tipPercentage) / 100;
-    this.totalAmount = this.billAmount + tip;
+  updateBillAmount(event: Event): void {
+    const value = +(event.target as HTMLInputElement).value;
+    this.billAmount.set(isNaN(value) ? 0 : value);
+  }
+
+  updateTipPercentage(event: Event): void {
+    const value = +(event.target as HTMLInputElement).value;
+    this.tipPercentage.set(isNaN(value) ? 0 : value);
+  }
+
+  calculateTip(): void {
+    const bill = this.billAmount();
+    const percent = this.tipPercentage();
+
+    const tip = (bill * percent) / 100;
+    const total = bill + tip;
+
+    this.tipAmount.set(tip);
+    this.totalAmount.set(total);
+    this.hasCalculated.set(true);
   }
 }

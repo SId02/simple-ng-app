@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { TipCalculator } from './tip-calculator';
 
 describe('TipCalculator', () => {
@@ -8,13 +7,12 @@ describe('TipCalculator', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TipCalculator]
-    })
-    .compileComponents();
+      imports: [TipCalculator],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(TipCalculator);
     component = fixture.componentInstance;
-    fixture.detectChanges();
+    await fixture.whenStable();
   });
 
   it('should create', () => {

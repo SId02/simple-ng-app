@@ -1,52 +1,67 @@
-import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { Component, signal } from '@angular/core';
 @Component({
+  imports: [],
   selector: 'app-passwordgenerator',
-  imports: [FormsModule],
+  styleUrl: './passwordgenerator.css',
   templateUrl: './passwordgenerator.html',
-  styleUrl: './passwordgenerator.css'
 })
 export class Passwordgenerator {
- length: number = 8; // Default length
-  includeUppercase: boolean = false;
-  includeLowercase: boolean = true;
-  includeNumbers: boolean = true;
-  includeSymbols: boolean = false;
-  generatedPassword: string = '';
 
-  private lowerChars: string = 'abcdefghijklmnopqrstuvwxyz';
-  private upperChars: string = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-  private numberChars: string = '0123456789';
-  private symbolChars: string = '!@#$%^&*';
+  readonly length = signal<number>(10);
+  readonly includeUppercase = signal<boolean>(false);
+  readonly includeLowercase = signal<boolean>(true);
+  readonly includeNumbers = signal<boolean>(true);
+  readonly includeSymbols = signal<boolean>(false);
+  readonly generatedPassword = signal<string>('');
 
-  onLengthChange(event: Event) {
-    const target = event.target as HTMLInputElement; // Cast the target to HTMLInputElement
-    this.length = +target.value; // Update length with the numeric value
+  private readonly lowerChars = 'abcdefghijklmnopqrstuvwxyz';
+  private readonly upperChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  private readonly numberChars = '0123456789';
+  private readonly symbolChars = '!@#$%^&*()<>{}';
+
+  updateLength(event: Event): void {
+    const value = +(event.target as HTMLInputElement).value;
+    this.length.set(value);
   }
 
-  generatePassword() {
+  toggleOption(
+    option: 'includeUppercase' | 'includeLowercase' | 'includeNumbers' | 'includeSymbols',
+    event: Event,
+  ): void {
+    const checked = (event.target as HTMLInputElement).checked;
+    switch (option) {
+      case 'includeUppercase':
+        this.includeUppercase.set(checked);
+        break;
+      case 'includeLowercase':
+        this.includeLowercase.set(checked);
+        break;
+      case 'includeNumbers':
+        this.includeNumbers.set(checked);
+        break;
+      case 'includeSymbols':
+        this.includeSymbols.set(checked);
+        break;
+    }
+  }
+
+  generatePassword(): void {
     let characterSet = '';
 
-    if (this.includeLowercase) {
-      characterSet += this.lowerChars;
-    }
-    if (this.includeUppercase) {
-      characterSet += this.upperChars;
-    }
-    if (this.includeNumbers) {
-      characterSet += this.numberChars;
-    }
-    if (this.includeSymbols) {
-      characterSet += this.symbolChars;
-    }
+    if (this.includeLowercase()) characterSet += this.lowerChars;
+    if (this.includeUppercase()) characterSet += this.upperChars;
+    if (this.includeNumbers()) characterSet += this.numberChars;
+    if (this.includeSymbols()) characterSet += this.symbolChars;
 
-    if (characterSet.length === 0) {
-      this.generatedPassword = 'Please select at least one character type.';
+    if (!characterSet) {
+      this.generatedPassword.set('Please select at least one character type.');
       return;
     }
 
-    this.generatedPassword = Array.from({ length: this.length })
+    const password = Array.from({ length: this.length() })
       .map(() => characterSet.charAt(Math.floor(Math.random() * characterSet.length)))
       .join('');
+
+    this.generatedPassword.set(password);
   }
 }

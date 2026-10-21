@@ -1,0 +1,62 @@
+:host {
+    display: block;
+    min-height: 100vh;
+    background: #f5f7fb;
+}
+
+.board-column {
+    min-height: 320px;
+    padding: 1rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.75rem;
+    background: #eef1f6;
+}
+
+.card-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    min-height: 240px;
+}
+
+.board-card {
+    cursor: grab;
+    transition: box-shadow 120ms ease, transform 120ms ease, opacity 120ms ease;
+}
+
+.board-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0.35rem 1rem rgb(0 0 0 / 8%);
+}
+
+.board-card:active {
+    cursor: grabbing;
+}
+
+.board-card.is-dragging {
+    opacity: 0.45;
+}
+
+.empty-state {
+    display: grid;
+    flex: 1;
+    place-items: center;
+    min-height: 100px;
+    border: 1px dashed #c8ced8;
+    border-radius: 0.5rem;
+    color: #77808f;
+    font-size: 0.9rem;
+}
+
+.modal-backdrop-custom {
+    position: fixed;
+    inset: 0;
+    z-index: 1050;
+    overflow-y: auto;
+    background: rgb(20 26 36 / 55%);
+}
+
+.modal {
+    position: static;
+    overflow: visible;
+}

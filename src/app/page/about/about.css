@@ -1,0 +1,9 @@
+.about {
+    width: 100%;
+    box-sizing: border-box;
+
+    .profile-img {
+        max-height: 250px;
+        object-fit: cover;
+    }
+}

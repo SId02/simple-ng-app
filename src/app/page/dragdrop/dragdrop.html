@@ -1,0 +1,118 @@
+<div class="container py-4 py-lg-5">
+    <header class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h1 class="h3 mb-1">Cardboard</h1>
+            <p class="text-secondary mb-0">Drag cards between columns to update their status.</p>
+        </div>
+        <button class="btn btn-primary" type="button" (click)="openAddModal()">
+            + Add card
+        </button>
+    </header>
+
+    <div class="row g-3">
+        @for (column of columns; track column.id) {
+        <div class="col-12 col-md-4">
+            <section class="board-column h-100" (dragover)="allowDrop($event)" (drop)="onDrop($event, column.id)">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h2 class="h6 mb-0">{{ column.title }}</h2>
+                    <span class="badge text-bg-light">{{ cardsFor(column.id).length }}</span>
+                </div>
+
+                <div class="card-stack">
+                    @for (card of cardsFor(column.id); track card.id) {
+                    <article class="card board-card" [class.is-dragging]="draggedId() === card.id" draggable="true"
+                        (dragstart)="onDragStart($event, card.id)" (dragend)="onDragEnd()" (click)="openEditModal(card)"
+                        (keydown.enter)="openEditModal(card)" tabindex="0" role="button"
+                        [attr.aria-label]="'Edit ' + card.title">
+                        <div class="card-body">
+                            <h3 class="h6 card-title">{{ card.title }}</h3>
+                            <p class="card-text text-secondary mb-0">{{ card.description }}</p>
+                        </div>
+                    </article>
+                    } @empty {
+                    <div class="empty-state">Drop a card here</div>
+                    }
+                </div>
+            </section>
+        </div>
+        }
+    </div>
+</div>
+
+@if (modalOpen()) {
+<div class="modal-backdrop-custom" (click)="closeModal()">
+    <div class="modal d-block" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="card-modal-title"
+        (click)="$event.stopPropagation()" (keydown.escape)="closeModal()">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <form #cardForm="ngForm" (ngSubmit)="saveCard()">
+                    <div class="modal-header">
+                        <h2 class="modal-title fs-5" id="card-modal-title">
+                            {{ editingId() ? 'Edit card' : 'Add card' }}
+                        </h2>
+                        <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="cardTitle" class="form-label">Title</label>
+                            <input id="cardTitle" name="title" class="form-control" required pattern="[A-Za-z ]+"
+                                [ngModel]="title()" (ngModelChange)="title.set($event)" #titleModel="ngModel"
+                                placeholder="Letters and spaces only" />
+                            @if (titleModel.invalid && (titleModel.dirty || titleModel.touched)) {
+                            <div class="form-text text-danger">
+                                Enter a title using letters and spaces only.
+                            </div>
+                            }
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="cardDescription" class="form-label">Description</label>
+                            <textarea id="cardDescription" name="description" class="form-control" rows="4" required
+                                minlength="10" [ngModel]="description()" (ngModelChange)="description.set($event)"
+                                #descriptionModel="ngModel" placeholder="At least 10 characters"></textarea>
+                            @if (
+                            descriptionModel.invalid &&
+                            (descriptionModel.dirty || descriptionModel.touched)
+                            ) {
+                            <div class="form-text text-danger">
+                                Description must be at least 10 characters.
+                            </div>
+                            }
+                        </div>
+
+                        <div>
+                            <label for="cardColumn" class="form-label">Column</label>
+                            <select id="cardColumn" name="column" class="form-select" [ngModel]="selectedColumn()"
+                                (ngModelChange)="selectedColumn.set($event)">
+                                @for (column of columns; track column.id) {
+                                <option [ngValue]="column.id">{{ column.title }}</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer justify-content-between">
+                        @if (editingId()) {
+                        <button type="button" class="btn btn-outline-danger" (click)="deleteCard()">
+                            Delete
+                        </button>
+                        } @else {
+                        <span></span>
+                        }
+
+                        <div class="d-flex gap-2">
+                            <button type="button" class="btn btn-light" (click)="closeModal()">
+                                Cancel
+                            </button>
+                            <button type="submit" class="btn btn-primary" [disabled]="cardForm.invalid">
+                                Save card
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+}

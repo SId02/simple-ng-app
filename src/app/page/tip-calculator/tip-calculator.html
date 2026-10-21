@@ -1,20 +1,44 @@
-<div class="container">
-    <div class="row">
-      <div class="col">
-        <div class="container mt-5">
-          <h2>Tip Calculator</h2>
-          <div class="mb-3">
-            <label for="billAmount" class="form-label">Bill Amount</label>
-            <input type="number" id="billAmount" class="form-control" [(ngModel)]="billAmount" />
-          </div>
-          <div class="mb-3">
-            <label for="tipPercentage" class="form-label">Tip Percentage</label>
-            <input type="number" id="tipPercentage" class="form-control" [(ngModel)]="tipPercentage" />
-          </div>
-          <button (click)="calculateTip()" class="btn btn-primary">Calculate Tip</button>
-          <h4 class="mt-3">Total Amount: {{ totalAmount }}</h4>
+<div class="container py-3">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-8 col-lg-6">
+            <div class="card shadow border-0 rounded-4 p-4">
+                <h3 class="fw-bold mb-3 text-center">Tip Calculator</h3>
+
+                <div class="mb-3">
+                    <label for="billAmount" class="form-label small fw-semibold">Bill Amount</label>
+                    <div class="input-group input-group-sm">
+                        <span class="input-group-text">₹</span>
+                        <input type="number" id="billAmount" class="form-control" placeholder="0.00" min="0"
+                            [value]="billAmount()" (input)="updateBillAmount($event)" />
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="tipPercentage" class="form-label small fw-semibold">
+                        Tip Percentage: <span class="badge bg-primary">{{ tipPercentage() }}%</span>
+                    </label>
+                    <input type="range" class="form-range" id="tipPercentage" min="0" max="50" step="1"
+                        [value]="tipPercentage()" (input)="updateTipPercentage($event)" />
+                </div>
+
+                <button type="button" (click)="calculateTip()"
+                    class="btn btn-primary btn-sm w-100 py-2 mb-3 fw-semibold">
+                    <i class="bi bi-calculator me-2" aria-hidden="true"></i> Calculate Total
+                </button>
+
+                @if (hasCalculated()) {
+                <div class="p-3 bg-light rounded-3 border small">
+                    <div class="d-flex justify-content-between mb-1">
+                        <span class="text-muted">Tip Amount:</span>
+                        <span class="fw-semibold">₹{{ tipAmount().toFixed(2) }}</span>
+                    </div>
+                    <div class="d-flex justify-content-between border-top pt-2">
+                        <span class="fw-bold text-dark">Total Amount:</span>
+                        <span class="fw-bold text-success">₹{{ totalAmount().toFixed(2) }}</span>
+                    </div>
+                </div>
+                }
+            </div>
         </div>
-      </div>
     </div>
-  </div>
-  
+</div>

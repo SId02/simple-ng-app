@@ -1,22 +1,16 @@
-<div class="about p-5" id="about">
-    <div class="container">
-      <h1 class="text-center">About Me</h1>
-      <div class="row m-5 p-5">
-        <div class="col-lg-4 col-md-4 col-sm-12">
-          <img
-            src="../../../../public/favicon.ico"
-            class="img-fluid"
-            alt="ngapp19"/>
-          <span class="text-justify"></span>
+<section class="about d-flex align-items-center py-5" id="about">
+    <div class="container overflow-hidden">
+        <h2 class="text-center mb-5 fw-bold">About Me</h2>
+        <div class="row align-items-center justify-content-center g-4 mx-0">
+            <div class="col-lg-4 col-md-5 col-sm-12 text-center">
+                <img src="favicon.ico" class="img-fluid rounded profile-img" alt="ngapp22" />
+            </div>
+            <div class="col-lg-7 col-md-7 col-sm-12 desc border-start ps-md-4">
+                <h3 class="fw-semibold mb-3">{{ appName() }}</h3>
+                <p class="text-muted lh-base mb-0">
+                    {{ appDescription() }}
+                </p>
+            </div>
         </div>
-        <div class="col-lg-8 col-md-8 col-sm-12 desc border-left">
-          <h3>Simple-ng-app</h3>
-          <p>
-            Simple-ng-app is app made using Angular 20 version and Bootstrap 5.3.8 version for style. It is collection of
-            concept in Angular like Navigation ,HttpClient For api call,Form
-            validation.
-          </p>
-        </div>
-      </div>
     </div>
-  </div>
+</section>

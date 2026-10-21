@@ -1,7 +1,13 @@
-.gradient-hr {
-    border: none;
-    height: 5px; 
-    background-image: linear-gradient(to right, #007bff, #28a745); 
-    margin: 20px auto; 
-    width: 50%; 
+.hover-card {
+    transition: transform 0.25s ease-in-out, box-shadow 0.25s ease-in-out, background-color 0.25s ease-in-out;
+    background-color: var(--bs-body-bg);
+    border: 1px solid var(--bs-border-color-translucent);
+}
+
+.hover-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.1) !important;
+    background-color: var(--bs-primary-bg-subtle) !important;
+    color: var(--bs-primary);
+    border-color: var(--bs-primary-border-subtle);
 }

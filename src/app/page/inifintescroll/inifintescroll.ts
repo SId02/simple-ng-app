@@ -1,46 +1,55 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener, signal, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { CommonModule } from '@angular/common';
 
 @Component({
+  imports: [],
   selector: 'app-inifintescroll',
-  imports: [CommonModule],
+  styleUrl: './inifintescroll.css',
   templateUrl: './inifintescroll.html',
-  styleUrl: './inifintescroll.css'
 })
 export class Inifintescroll implements OnInit {
- posts: any[] = [];
-  page = 1;
-  limit = 20;
-  viewType = 'grid'; // 'grid' or 'list'
-  loading = false;
+  private http = inject(HttpClient);
 
-  constructor(private http: HttpClient) {}
+  readonly posts = signal<any[]>([]);
+  readonly page = signal(1);
+  readonly viewType = signal<'grid' | 'list'>('grid');
+  readonly loading = signal(false);
+
+  private readonly limit = 20;
 
   ngOnInit() {
     this.loadPosts();
   }
 
   loadPosts() {
-    if (this.loading) return;
-    this.loading = true;
-    this.http.get<any[]>(`https://jsonplaceholder.typicode.com/posts?_page=${this.page}&_limit=${this.limit}`)
-      .subscribe(data => {
-        this.posts = [...this.posts, ...data];
-        this.loading = false;
-        this.page++;
+    if (this.loading()) return;
+
+    this.loading.set(true);
+
+    this.http
+      .get<any[]>(
+        `https://jsonplaceholder.typicode.com/posts?_page=${this.page()}&_limit=${this.limit}`,
+      )
+      .subscribe({
+        next: (data) => {
+
+          this.posts.update((currentPosts) => [...currentPosts, ...data]);
+          this.page.update((p) => p + 1);
+          this.loading.set(false);
+        },
+        error: () => this.loading.set(false),
       });
   }
 
-  // Infinite scroll logic
   @HostListener('window:scroll', [])
   onScroll() {
-    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 1) {
+    
+    if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 1) {
       this.loadPosts();
     }
   }
 
-  switchView(type: string) {
-    this.viewType = type;
+  switchView(type: 'grid' | 'list') {
+    this.viewType.set(type);
   }
 }

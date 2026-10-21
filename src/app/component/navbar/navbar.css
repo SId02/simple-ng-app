@@ -1,0 +1,14 @@
+.navbar-actions {
+    flex-wrap: wrap;
+}
+
+@media (max-width: 991.98px) {
+    .navbar-actions {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .navbar-actions .btn {
+        width: 100%;
+    }
+}

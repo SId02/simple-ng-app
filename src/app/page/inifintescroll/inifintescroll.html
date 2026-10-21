@@ -1,34 +1,48 @@
-<div class="container">
-<div class="mb-3 text-center">
-  <button class="btn btn-primary me-2" (click)="switchView('grid')">Grid</button>
-  <button class="btn btn-secondary" (click)="switchView('list')">List</button>
-</div>
-</div>
-
-<div class="container">
-  <div *ngIf="viewType === 'grid'" class="row g-3">
-    <div class="col-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let post of posts">
-      <div class="card h-100">
-        <div class="card-body">
-          <h5 class="card-title">{{post.title}}</h5>
-          <p class="card-text">{{post.body}}</p>
+<div class="container mt-4">
+    <div class="mb-4 text-center">
+        <div class="btn-group" role="group" aria-label="View Toggle">
+            <button class="btn" [class.btn-primary]="viewType() === 'grid'"
+                [class.btn-outline-primary]="viewType() !== 'grid'" (click)="switchView('grid')">
+                <i class="bi bi-grid-3g-gap me-2"></i>Grid
+            </button>
+            <button class="btn" [class.btn-primary]="viewType() === 'list'"
+                [class.btn-outline-primary]="viewType() !== 'list'" (click)="switchView('list')">
+                <i class="bi bi-list-ul me-2"></i>List
+            </button>
         </div>
-      </div>
     </div>
-  </div>
-  
-  <div *ngIf="viewType === 'list'" class="list-group">
-    <div class="list-group-item " *ngFor="let post of posts">
-      <h5>{{post.title}}</h5>
-      <p>{{post.body}}</p>
-    </div>
-  </div>
-
 </div>
 
-<!-- Bootstrap spinner for loading -->
-<div class="d-flex justify-content-center my-3" *ngIf="loading">
-  <div class="spinner-border text-primary" role="status">
-    <span class="visually-hidden">Loading...</span>
-  </div>
+<div class="container">
+    @if (viewType() === 'grid') {
+    <div class="row g-3">
+        @for (post of posts(); track post.id) {
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title text-truncate-2">{{post.title}}</h5>
+                    <p class="card-text text-muted small">{{post.body}}</p>
+                </div>
+            </div>
+        </div>
+        }
+    </div>
+    } @else {
+    <div class="list-group shadow-sm">
+        @for (post of posts(); track post.id) {
+        <div class="list-group-item p-3">
+            <h5 class="mb-1">{{post.title}}</h5>
+            <p class="mb-0 text-muted">{{post.body}}</p>
+        </div>
+        }
+    </div>
+    }
+
+    @if (loading()) {
+    <div class="d-flex justify-content-center my-4">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+    }
 </div>

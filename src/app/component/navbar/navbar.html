@@ -1,21 +1,43 @@
-<div class="container">
-    <nav class="navbar navbar-expand-lg navbar-light  ">
-      <div class="container">
-        <a class="navbar-brand" routerLink="/">
-          Simple-NG-APP
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#header01" aria-controls="header01" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container">
+    <a class="navbar-brand" routerLink="/">Simple-NG-APP</a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#header01"
+      aria-controls="header01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="header01">
+      <ul class="navbar-nav ms-auto mt-3 mt-lg-0 mb-3 mb-lg-0 me-lg-4">
+        <li class="nav-item me-lg-3">
+          <a class="nav-link" routerLink="/">Home</a>
+        </li>
+        <li class="nav-item me-lg-3">
+          <a class="nav-link" routerLink="/about">About</a>
+        </li>
+      </ul>
+
+      <div class="navbar-actions d-flex align-items-center gap-2">
+        <button type="button" class="btn btn-outline-secondary" (click)="themeService.toggleTheme()" [attr.aria-label]="
+            themeService.theme() === 'light'
+              ? 'Switch to dark mode'
+              : 'Switch to light mode'
+          " [attr.title]="
+            themeService.theme() === 'light'
+              ? 'Switch to dark mode'
+              : 'Switch to light mode'
+          ">
+          @if (themeService.theme() === 'light') {
+          <i class="bi bi-moon-stars" aria-hidden="true"></i>
+          <!-- <span class="ms-2">Dark mode</span> -->
+          } @else {
+          <i class="bi bi-sun" aria-hidden="true"></i>
+          <!-- <span class="ms-2">Light mode</span> -->
+          }
         </button>
-        <div class="collapse navbar-collapse" id="header01">
-          <ul class="navbar-nav ms-auto mt-3 mt-lg-0 mb-3 mb-lg-0 me-4">
-            <li class="nav-item me-4"><a class="nav-link" routerLink="/">Home</a></li>
-            <li class="nav-item me-4"><a class="nav-link" routerLink="/about">About</a></li>
-            <li class="nav-item me-4"><a class="nav-link" routerLink="/passwordgenerator">Password Generator</a></li>
-          </ul>
-          
-          <div><a class="btn btn-primary" routerLink="/contact">Contact Us</a></div>
-        </div>
+
+        <a class="btn btn-primary" routerLink="/contact">Contact Us</a>
       </div>
-    </nav>
+    </div>
   </div>
+</nav>

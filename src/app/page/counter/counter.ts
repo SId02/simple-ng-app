@@ -1,29 +1,31 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, computed, signal } from '@angular/core';
+
 @Component({
+  imports: [],
   selector: 'app-counter',
-  imports: [CommonModule],
+  styleUrl: './counter.css',
   templateUrl: './counter.html',
-  styleUrl: './counter.css'
 })
 export class Counter {
- count: number = 0;
+  readonly count = signal(0);
 
-  increment() {
-    this.count++;
-  }
+  readonly countColor = computed(() => {
+    const value = this.count();
 
-  decrement() {
-    this.count--;
-  }
-
-  reset() {
-    this.count = 0;
-  }
-
-  getCountColor(): string {
-    if (this.count > 0) return 'text-success';
-    if (this.count < 0) return 'text-danger';
+    if (value > 0) return 'text-success';
+    if (value < 0) return 'text-danger';
     return 'text-secondary';
+  });
+
+  increment(): void {
+    this.count.update((value) => value + 1);
+  }
+
+  decrement(): void {
+    this.count.update((value) => value - 1);
+  }
+
+  reset(): void {
+    this.count.set(0);
   }
 }

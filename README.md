@@ -1,10 +1,6 @@
-# SimpleNgApp
+# SimpleNgApp [SimpleNgApp](https://simple-ng-app.vercel.app/)
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.5.
-
-
-[simple-ng-app](https://simple-ng-app.vercel.app/)
-
+This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.2.2 and Bootstrap version 5.3.8
 
 ## Development server
 
@@ -42,7 +38,7 @@ This will compile your project and store the build artifacts in the `dist/` dire
 
 ## Running unit tests
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
 
 ```bash
 ng test

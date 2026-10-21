@@ -1,1 +1,120 @@
-<p>contact works!</p>
+<div class="container py-3 py-lg-4">
+  <div class="row justify-content-center align-items-center">
+    <div class="col-12 col-lg-10">
+      <div class="card contact-card shadow">
+        <div class="row g-0">
+          <!-- Left Info Column -->
+          <div
+            class="col-12 col-md-5 contact-info text-white p-3 p-lg-4 d-flex flex-column justify-content-center"
+          >
+            <h1 class="h3 mb-2">Get in touch</h1>
+            <p class="mb-3 small">Have a question or need help? Send us a message.</p>
+
+            <div class="d-flex align-items-start gap-2 mb-2">
+              <i class="bi bi-envelope fs-6" aria-hidden="true"></i>
+              <a class="text-white text-decoration-none small" href="mailto:message@example.com">
+                message@example.com
+              </a>
+            </div>
+
+            <div class="d-flex align-items-start gap-2">
+              <i class="bi bi-telephone fs-6" aria-hidden="true"></i>
+              <a class="text-white text-decoration-none small" href="tel:+919999999999">
+                +919999999999
+              </a>
+            </div>
+
+            <div class="d-flex align-items-start gap-2">
+              <i class="bi bi-geo-alt fs-6" aria-hidden="true"></i>
+              <span class="text-white small">
+                123 main marg, mumbai, maharashtra, india 400001
+              </span>
+            </div>
+          </div>
+
+          <!-- Right Form Column -->
+          <div class="col-12 col-md-7 p-3 p-lg-4">
+            @if (submitted()) {
+              <div class="alert alert-success py-2 mb-3 small" role="status">
+                Thanks for contacting us. Your message is ready to be sent.
+              </div>
+            }
+
+            <form novalidate (submit)="$event.preventDefault(); submit()">
+              <div class="mb-2">
+                <label for="name" class="form-label small mb-1">Name</label>
+                <input
+                  id="name"
+                  class="form-control form-control-sm"
+                  type="text"
+                  autocomplete="name"
+                  required
+                  [value]="formData().name"
+                  (input)="updateField('name', $any($event.target).value)"
+                  [class.is-invalid]="attemptedSubmit() && !formData().name.trim()"
+                />
+                @if (attemptedSubmit() && !formData().name.trim()) {
+                  <div class="invalid-feedback small">Please enter your name.</div>
+                }
+              </div>
+
+              <div class="mb-2">
+                <label for="email" class="form-label small mb-1">Email</label>
+                <input
+                  id="email"
+                  class="form-control form-control-sm"
+                  type="email"
+                  autocomplete="email"
+                  required
+                  [value]="formData().email"
+                  (input)="updateField('email', $any($event.target).value)"
+                  [class.is-invalid]="attemptedSubmit() && !isEmailValid()"
+                />
+                @if (attemptedSubmit() && !isEmailValid()) {
+                  <div class="invalid-feedback small">Enter a valid email address.</div>
+                }
+              </div>
+
+              <div class="mb-2">
+                <label for="subject" class="form-label small mb-1">Subject</label>
+                <input
+                  id="subject"
+                  class="form-control form-control-sm"
+                  type="text"
+                  required
+                  [value]="formData().subject"
+                  (input)="updateField('subject', $any($event.target).value)"
+                  [class.is-invalid]="attemptedSubmit() && !formData().subject.trim()"
+                />
+                @if (attemptedSubmit() && !formData().subject.trim()) {
+                  <div class="invalid-feedback small">Please enter a subject.</div>
+                }
+              </div>
+
+              <div class="mb-3">
+                <label for="message" class="form-label small mb-1">Message</label>
+                <textarea
+                  id="message"
+                  class="form-control form-control-sm"
+                  rows="3"
+                  required
+                  [value]="formData().message"
+                  (input)="updateField('message', $any($event.target).value)"
+                  [class.is-invalid]="attemptedSubmit() && !formData().message.trim()"
+                ></textarea>
+                @if (attemptedSubmit() && !formData().message.trim()) {
+                  <div class="invalid-feedback small">Please enter a message.</div>
+                }
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-sm w-100">
+                <i class="bi bi-send me-2" aria-hidden="true"></i>
+                Send message
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

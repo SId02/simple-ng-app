@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { Passwordgenerator } from './passwordgenerator';
 
 describe('Passwordgenerator', () => {
@@ -8,13 +7,12 @@ describe('Passwordgenerator', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Passwordgenerator]
-    })
-    .compileComponents();
+      imports: [Passwordgenerator],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(Passwordgenerator);
     component = fixture.componentInstance;
-    fixture.detectChanges();
+    await fixture.whenStable();
   });
 
   it('should create', () => {
