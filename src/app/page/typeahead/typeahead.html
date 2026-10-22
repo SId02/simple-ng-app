@@ -1,0 +1,65 @@
+<div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-8 col-lg-6">
+
+            <!-- Header -->
+            <h3 class="text-center fw-bold mb-4">Typeahead Country Search</h3>
+
+            <div class="card shadow border-0 rounded-4 p-4">
+
+                <!-- Search Input -->
+                <div class="mb-3 position-relative">
+                    <label for="search" class="form-label small fw-semibold">Type Country Name</label>
+                    <input id="search" type="text" class="form-control" placeholder="e.g. India, Japan..."
+                        [value]="searchTerm()" (input)="onSearchChange($event)" />
+                </div>
+
+                <!-- Country Suggestions List -->
+                @if (searchTerm().trim().length > 0 && filteredCountries().length > 0) {
+                <ul class="list-group mb-3 country-list shadow-sm">
+                    @for (country of filteredCountries(); track country.cca3) {
+                    <li class="list-group-item list-group-item-action cursor-pointer" (click)="selectCountry(country)">
+                        {{ country.name.common }}
+                    </li>
+                    }
+                </ul>
+                }
+
+                <!-- Selected Country Information Card -->
+                @if (selectedCountry(); as country) {
+                <div class="card border bg-light mt-3 p-3 rounded-3">
+                    <div class="text-center mb-3">
+                        <img [src]="country.flags.png" [alt]="country.name.common"
+                            class="img-fluid rounded shadow-sm flag-img" />
+                    </div>
+                    <h4 class="text-center fw-bold mb-3">{{ country.name.common }}</h4>
+                    <ul class="list-unstyled small mb-0 vstack gap-2">
+                        <li class="d-flex justify-content-between border-bottom pb-1">
+                            <span class="text-muted">Population:</span>
+                            <span class="fw-semibold">{{ country.population.toLocaleString() }}</span>
+                        </li>
+                        <li class="d-flex justify-content-between border-bottom pb-1">
+                            <span class="text-muted">Region:</span>
+                            <span class="fw-semibold">{{ country.region }}</span>
+                        </li>
+                        <li class="d-flex justify-content-between">
+                            <span class="text-muted">Capital:</span>
+                            <span class="fw-semibold">{{ country.capital }}</span>
+                        </li>
+                    </ul>
+                </div>
+                }
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<footer class="footer mt-5 py-4 bg-light text-center border-top">
+    <div class="container">
+        <a routerLink="/" class="text-decoration-none fw-semibold text-primary">
+            Back to Home
+        </a>
+    </div>
+</footer>

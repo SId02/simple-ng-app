@@ -1,11 +1,12 @@
 import { Component, signal, computed } from '@angular/core';
+import { RouterLink } from '@angular/router';
 interface Testimonial {
   image: string;
   name: string;
   message: string;
 }
 @Component({
-  imports: [],
+  imports: [RouterLink],
   selector: 'app-testimonial',
   styleUrl: './testimonial.css',
   templateUrl: './testimonial.html',

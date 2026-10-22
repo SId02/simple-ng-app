@@ -1,0 +1,17 @@
+.country-list {
+    max-height: 220px;
+    overflow-y: auto;
+    position: absolute;
+    width: calc(100% - 2.5rem);
+    z-index: 1000;
+    background: white;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.flag-img {
+    max-height: 120px;
+    object-fit: contain;
+}

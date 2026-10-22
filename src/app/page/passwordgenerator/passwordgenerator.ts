@@ -1,12 +1,12 @@
 import { Component, signal } from '@angular/core';
+import { RouterLink } from '@angular/router';
 @Component({
-  imports: [],
+  imports: [RouterLink],
   selector: 'app-passwordgenerator',
   styleUrl: './passwordgenerator.css',
   templateUrl: './passwordgenerator.html',
 })
 export class Passwordgenerator {
-
   readonly length = signal<number>(10);
   readonly includeUppercase = signal<boolean>(false);
   readonly includeLowercase = signal<boolean>(true);

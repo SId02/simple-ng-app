@@ -1,0 +1,12 @@
+.github-finder-wrapper {
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden;
+    /* Prevents horizontal overscroll/layout blowout */
+    box-sizing: border-box;
+}
+
+/* Optional polish for cards and lists */
+.card {
+    border-radius: 0.75rem;
+}

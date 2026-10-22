@@ -1,7 +1,7 @@
 import { Component, computed, signal } from '@angular/core';
-
+import { RouterLink } from '@angular/router';
 @Component({
-  imports: [],
+  imports: [RouterLink],
   selector: 'app-counter',
   styleUrl: './counter.css',
   templateUrl: './counter.html',

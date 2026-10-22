@@ -1,8 +1,8 @@
 import { Component, OnInit, HostListener, signal, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
+import { RouterLink } from '@angular/router';
 @Component({
-  imports: [],
+  imports: [RouterLink],
   selector: 'app-inifintescroll',
   styleUrl: './inifintescroll.css',
   templateUrl: './inifintescroll.html',
@@ -32,7 +32,6 @@ export class Inifintescroll implements OnInit {
       )
       .subscribe({
         next: (data) => {
-
           this.posts.update((currentPosts) => [...currentPosts, ...data]);
           this.page.update((p) => p + 1);
           this.loading.set(false);
@@ -43,7 +42,6 @@ export class Inifintescroll implements OnInit {
 
   @HostListener('window:scroll', [])
   onScroll() {
-    
     if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 1) {
       this.loadPosts();
     }

@@ -1,7 +1,6 @@
-
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-
+import { RouterLink } from '@angular/router';
 type ColumnId = 'todo' | 'doing' | 'done';
 
 interface CardBoard {
@@ -12,7 +11,7 @@ interface CardBoard {
 }
 @Component({
   selector: 'app-dragdrop',
-  imports: [FormsModule],
+  imports: [FormsModule, RouterLink],
   styleUrl: './dragdrop.css',
   templateUrl: './dragdrop.html',
   changeDetection: ChangeDetectionStrategy.OnPush,

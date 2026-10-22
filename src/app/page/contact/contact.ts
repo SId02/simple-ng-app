@@ -1,5 +1,5 @@
 import { Component, signal } from '@angular/core';
-
+import { RouterLink } from '@angular/router';
 interface ContactForm {
   name: string;
   email: string;
@@ -8,7 +8,7 @@ interface ContactForm {
 }
 
 @Component({
-  imports: [],
+  imports: [RouterLink],
   selector: 'app-contact',
   styleUrl: './contact.css',
   templateUrl: './contact.html',
