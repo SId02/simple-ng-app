@@ -1,0 +1,61 @@
+<section class="container py-5">
+    <!-- Header -->
+    <div class="text-center mb-5">
+        <h1 class="display-5 fw-bold">Currency Converter</h1>
+    </div>
+
+    <!-- Converter Card -->
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow-sm p-4 mb-5 border-0">
+                <div class="row g-4">
+
+                    <!-- From Currency -->
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="fromCurrency" class="form-label fw-semibold">From Currency:</label>
+                            <select id="fromCurrency" class="form-select form-select-lg" [value]="fromCurrency()"
+                                (change)="updateFromCurrency($event)">
+                                @for (currency of currencies(); track currency) {
+                                <option [value]="currency">{{ currency }}</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- To Currency -->
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="toCurrency" class="form-label fw-semibold">To Currency:</label>
+                            <select id="toCurrency" class="form-select form-select-lg" [value]="toCurrency()"
+                                (change)="updateToCurrency($event)">
+                                @for (currency of currencies(); track currency) {
+                                <option [value]="currency">{{ currency }}</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Amount Input -->
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="amt" class="form-label fw-semibold">Amount:</label>
+                            <input type="number" id="amt" class="form-control form-control-lg" placeholder="0000"
+                                [value]="amount()" (input)="updateAmount($event)" />
+                        </div>
+                    </div>
+
+                    <!-- Converted Amount Display -->
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Converted Amount:</label>
+                            <input type="text" class="form-control form-control-lg bg-light" [value]="convertedAmount()"
+                                readonly />
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Typeahead } from './typeahead';
+import { CrudOperation } from './crud-operation';
 
-describe('Typeahead', () => {
-  let component: Typeahead;
-  let fixture: ComponentFixture<Typeahead>;
+describe('CrudOperation', () => {
+  let component: CrudOperation;
+  let fixture: ComponentFixture<CrudOperation>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Typeahead],
+      imports: [CrudOperation],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(Typeahead);
+    fixture = TestBed.createComponent(CrudOperation);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

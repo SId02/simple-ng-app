@@ -1,0 +1,148 @@
+<main class="container py-5">
+    <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
+        <div>
+            <h1 class="h3 mb-1">Posts</h1>
+            <p class="text-secondary mb-0">Manage your records</p>
+        </div>
+        <button class="btn btn-primary" type="button" (click)="openAdd()">
+            Add post
+        </button>
+    </div>
+
+    @if (error()) {
+    <div class="alert alert-danger" role="alert">{{ error() }}</div>
+    }
+
+    @if (loading()) {
+    <div class="text-center py-5">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading…</span>
+        </div>
+    </div>
+    } @else {
+    <div class="card shadow-sm">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Body</th>
+                        <th scope="col" class="text-end">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (post of pagePosts(); track post.id) {
+                    <tr>
+                        <td>{{ post.id }}</td>
+                        <td class="fw-semibold">{{ post.title }}</td>
+                        <td>{{ post.body }}</td>
+                        <td class="text-end text-nowrap">
+                            <button class="btn btn-sm btn-outline-primary me-2" type="button" (click)="openEdit(post)">
+                                Edit
+                            </button>
+                            <button class="btn btn-sm btn-outline-danger" type="button"
+                                [disabled]="deletingId() === post.id" (click)="deletePost(post)">
+                                {{ deletingId() === post.id ? 'Deleting…' : 'Delete' }}
+                            </button>
+                        </td>
+                    </tr>
+                    } @empty {
+                    <tr>
+                        <td colspan="4" class="text-center text-secondary py-4">
+                            No posts to display.
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <div class="card-footer bg-white d-flex justify-content-between align-items-center">
+            <small class="text-secondary">
+                Showing {{ pagePosts().length }} of {{ posts().length }}
+            </small>
+            <nav aria-label="Posts pagination">
+                <ul class="pagination pagination-sm mb-0">
+                    <li class="page-item" [class.disabled]="page() === 1">
+                        <button class="page-link" type="button" [disabled]="page() === 1"
+                            (click)="changePage(page() - 1)">
+                            Previous
+                        </button>
+                    </li>
+                    <li class="page-item disabled">
+                        <span class="page-link">{{ page() }} / {{ totalPages() }}</span>
+                    </li>
+                    <li class="page-item" [class.disabled]="page() === totalPages()">
+                        <button class="page-link" type="button" [disabled]="page() === totalPages()"
+                            (click)="changePage(page() + 1)">
+                            Next
+                        </button>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    }
+
+    @if (formOpen()) {
+    <div class="modal d-block" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="post-form-title"
+        style="background: rgba(0, 0, 0, .5)">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <form [formGroup]="postForm" (ngSubmit)="savePost()">
+                    <div class="modal-header">
+                        <h2 class="modal-title fs-5" id="post-form-title">
+                            {{ editingId() === null ? 'Add post' : 'Edit post' }}
+                        </h2>
+                        <button type="button" class="btn-close" aria-label="Close" (click)="closeForm()"></button>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="title" class="form-label">Title</label>
+                            <input id="title" class="form-control" [class.is-invalid]="showError('title')"
+                                formControlName="title" />
+                            @if (showError('title')) {
+                            <div class="invalid-feedback">
+                                Title is required and must be at least 3 characters.
+                            </div>
+                            }
+                        </div>
+
+                        <div>
+                            <label for="body" class="form-label">Body</label>
+                            <textarea id="body" rows="4" class="form-control" [class.is-invalid]="showError('body')"
+                                formControlName="body"></textarea>
+                            @if (showError('body')) {
+                            <div class="invalid-feedback">
+                                Body is required and must be at least 5 characters.
+                            </div>
+                            }
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary" (click)="closeForm()">
+                            Cancel
+                        </button>
+                        <button type="submit" class="btn btn-primary" [disabled]="saving()">
+                            {{ saving() ? 'Saving…' : 'Save' }}
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    }
+</main>
+
+
+<!-- Footer -->
+<footer class="footer mt-5 py-4 bg-light text-center border-top">
+    <div class="container">
+        <a routerLink="/" class="text-decoration-none fw-semibold text-primary">
+            Back to Home
+        </a>
+    </div>
+</footer>

@@ -1,0 +1,123 @@
+<section>
+    <div class="container-fluid vh-100 d-flex flex-column justify-content-between p-3 overflow-hidden bg-light">
+
+        <!-- Header & Navigation Tabs -->
+        <div class="text-center mb-2">
+            <h3 class="fw-bold mb-2">Utilities Dashboard</h3>
+            <ul class="nav nav-pills justify-content-center gap-2">
+                <li class="nav-item">
+                    <button class="nav-link btn-sm px-3 py-1 fw-semibold" [class.active]="activeTab() === 'clock'"
+                        (click)="setActiveTab('clock')">
+                        Clock
+                    </button>
+                </li>
+                <li class="nav-item">
+                    <button class="nav-link btn-sm px-3 py-1 fw-semibold" [class.active]="activeTab() === 'stopwatch'"
+                        (click)="setActiveTab('stopwatch')">
+                        Stopwatch
+                    </button>
+                </li>
+                <li class="nav-item">
+                    <button class="nav-link btn-sm px-3 py-1 fw-semibold" [class.active]="activeTab() === 'wordcounter'"
+                        (click)="setActiveTab('wordcounter')">
+                        Word Counter
+                    </button>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Main Content Area -->
+        <div class="flex-grow-1 d-flex align-items-center justify-content-center overflow-hidden py-2">
+            <div class="w-100" style="max-width: 600px;">
+
+                <!-- 1. Digital Clock Tab -->
+                @if (activeTab() === 'clock') {
+                <div class="card shadow-sm border-0 rounded-4 p-4 text-center bg-white">
+                    <h1 class="display-5 fw-bold text-primary mb-2">{{ timeString() }}</h1>
+                    <h4 class="h5 text-secondary mb-1">{{ dayString() }}</h4>
+                    <p class="text-muted small mb-0">{{ dateString() }}</p>
+                </div>
+                }
+
+                <!-- 2. Stopwatch Tab -->
+                @if (activeTab() === 'stopwatch') {
+                <div class="card shadow-sm border-0 rounded-4 p-4 text-center bg-white">
+                    <h1 class="display-5 fw-bold font-monospace mb-3">{{ formattedStopwatch() }}</h1>
+
+                    <div class="d-flex justify-content-center gap-2 mb-3">
+                        <button class="btn btn-sm px-4 fw-semibold" [class.btn-warning]="isRunning()"
+                            [class.btn-success]="!isRunning()" (click)="toggleStopwatch()">
+                            {{ isRunning() ? 'Pause' : 'Start' }}
+                        </button>
+                        <button class="btn btn-info btn-sm px-4 fw-semibold text-white" [disabled]="!isRunning()"
+                            (click)="addLap()">
+                            Lap
+                        </button>
+                        <button class="btn btn-danger btn-sm px-4 fw-semibold" (click)="resetStopwatch()">
+                            Reset
+                        </button>
+                    </div>
+
+                    @if (laps().length > 0) {
+                    <div class="border-top pt-2 mt-2" style="max-height: 100px; overflow-y: auto;">
+                        <h6 class="text-muted small mb-1">Laps</h6>
+                        <div class="d-flex flex-wrap justify-content-center gap-1">
+                            @for (lap of laps(); track $index) {
+                            <span class="badge bg-primary font-monospace small">Lap {{$index + 1}}: {{lap}}</span>
+                            }
+                        </div>
+                    </div>
+                    }
+                </div>
+                }
+
+                <!-- 3. Word Counter Tab -->
+                @if (activeTab() === 'wordcounter') {
+                <div class="card shadow-sm border-0 rounded-4 p-3 bg-white">
+                    <div class="row text-center g-2 mb-3">
+                        <div class="col-4">
+                            <div class="p-2 bg-primary bg-opacity-10 rounded-3">
+                                <small class="text-muted d-block fw-semibold"
+                                    style="font-size: 0.75rem;">Characters</small>
+                                <span class="fw-bold fs-6 text-primary">{{ wordStats().characters }}</span>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="p-2 bg-warning bg-opacity-10 rounded-3">
+                                <small class="text-muted d-block fw-semibold" style="font-size: 0.75rem;">Words</small>
+                                <span class="fw-bold fs-6 text-dark">{{ wordStats().words }}</span>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="p-2 bg-info bg-opacity-10 rounded-3">
+                                <small class="text-muted d-block fw-semibold" style="font-size: 0.75rem;">Read
+                                    Time</small>
+                                <span class="fw-bold fs-6 text-info">{{ wordStats().readingTime }}m</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-2">
+                        <textarea class="form-control form-control-sm" rows="3" style="resize: none;"
+                            placeholder="Type or paste your text here..." [value]="text()"
+                            (input)="updateText($event)"></textarea>
+                    </div>
+
+                    <div class="text-center">
+                        <button class="btn btn-outline-secondary btn-sm px-4 py-1" (click)="resetWordCounter()">
+                            Reset Text
+                        </button>
+                    </div>
+                </div>
+                }
+
+            </div>
+        </div>
+
+        <!-- Footer Link Moved Inside Flex Container -->
+        <footer class="text-center py-1 border-top">
+            <a routerLink="/" class="text-decoration-none small text-primary fw-semibold">Back to Home</a>
+        </footer>
+
+    </div>
+</section>
