@@ -1,0 +1,73 @@
+<div class="page-shell">
+    <section class="py-5">
+        <div class="container">
+            <header class="text-center mb-5">
+                <h1 class="display-6 fw-bold mb-2">Random Users Directory</h1>
+                <p class="text-secondary mb-0">
+                    Explore profile records fetched dynamically via API
+                </p>
+            </header>
+
+            @if (error()) {
+            <div class="alert alert-danger text-center mb-5" role="alert">
+                <i class="bi bi-exclamation-circle me-2" aria-hidden="true"></i>
+                {{ error() }}
+            </div>
+            }
+
+            @if (initialLoad() && loading()) {
+            <div class="text-center py-5" role="status">
+                <span class="spinner-border spinner-border-sm me-2" aria-hidden="true"></span>
+                <span class="text-secondary fw-medium">Loading initial users...</span>
+            </div>
+            }
+
+            <div class="row g-4">
+                @for (user of users(); track user.login.uuid) {
+                <div class="col-sm-6 col-lg-4 col-xl-3">
+                    <article class="card profile-card h-100 text-center p-4">
+                        <img class="profile-image rounded-circle mx-auto mb-3" [src]="user.picture.large"
+                            [alt]="user.name.first + ' ' + user.name.last">
+
+                        <div class="mb-3">
+                            <h2 class="h5 fw-semibold mb-1">
+                                {{ user.name.first }} {{ user.name.last }}
+                            </h2>
+                            <p class="small text-secondary text-break mb-0">
+                                {{ user.email }}
+                            </p>
+                        </div>
+
+                        <div class="mt-auto pt-3 border-top">
+                            <span class="badge rounded-pill text-bg-light">
+                                {{ user.location.country }}
+                            </span>
+                        </div>
+                    </article>
+                </div>
+                }
+            </div>
+
+            @if (!initialLoad()) {
+            <div class="text-center mt-5">
+                <button class="btn btn-primary btn-lg rounded-pill px-4" type="button" (click)="loadMoreUsers()"
+                    [disabled]="loading()">
+                    @if (loading()) {
+                    <span class="spinner-border spinner-border-sm me-2" aria-hidden="true"></span>
+                    Loading...
+                    } @else {
+                    Load More Users
+                    }
+                </button>
+            </div>
+            }
+        </div>
+    </section>
+
+    <footer class="footer-bar py-4 text-center">
+        <a href="/" class="link-primary fw-semibold text-decoration-none">
+            <i class="bi bi-arrow-left me-1" aria-hidden="true"></i>
+            Back to Home
+        </a>
+    </footer>
+</div>

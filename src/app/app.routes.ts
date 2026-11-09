@@ -14,6 +14,8 @@ import { Productlistsearchsortfilter } from './page/productlistsearchsortfilter/
 import { TipCalculator } from './page/tip-calculator/tip-calculator';
 import { Testimonials } from './page/testimonials/testimonial';
 import { Utilities } from './page/utilities/utilities';
+import { ExpenseTracker } from './page/expense-tracker/expense-tracker';
+import { Randomuser } from './page/randomuser/randomuser';
 
 export const routes: Routes = [
   { path: '', component: Home },
@@ -21,8 +23,8 @@ export const routes: Routes = [
   { path: 'contact', component: Contact },
   { path: 'counter', component: Counter },
   { path: 'crud-operation', component: CrudOperation },
-  {path:'currencyconverter',component:CurrencyConverter},
-  {path: 'dashboard', component: Dashboard},
+  { path: 'currencyconverter', component: CurrencyConverter },
+  { path: 'dashboard', component: Dashboard },
   { path: 'dragdrop', component: Dragdrop },
   { path: 'githubuserprofilefinder', component: GithubUserProfileFinder },
   { path: 'infinitescroll', component: Inifintescroll },
@@ -31,5 +33,7 @@ export const routes: Routes = [
   { path: 'tip-calculator', component: TipCalculator },
   { path: 'testimonials', component: Testimonials },
   { path: 'utilities', component: Utilities },
+  { path: 'expensetracker', component: ExpenseTracker },
+  { path: 'randomuser', component: Randomuser },
   { path: '**', redirectTo: '' },
 ];

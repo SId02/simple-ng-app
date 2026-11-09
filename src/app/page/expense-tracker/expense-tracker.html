@@ -1,0 +1,111 @@
+<main class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-9">
+            <header class="mb-4">
+                <h1 class="h2 mb-1">Expense tracker</h1>
+                <p class="text-secondary mb-0">Track where your money goes.</p>
+            </header>
+
+            <section class="row g-3 mb-4" aria-label="Expense summary">
+                <div class="col-md-6">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <p class="text-secondary mb-1">Total expenses</p>
+                            <p class="display-6 mb-0">{{ total() | currency:'INR' }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <p class="text-secondary mb-1">Transactions</p>
+                            <p class="display-6 mb-0">{{ expenses().length }}</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="card mb-4">
+                <div class="card-body">
+                    <h2 class="h5 mb-3">Add an expense</h2>
+                    <form (ngSubmit)="addExpense()" #expenseForm="ngForm">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label" for="title">Description</label>
+                                <input id="title" class="form-control" name="title" [(ngModel)]="title" required
+                                    maxlength="60" placeholder="e.g. Weekly groceries">
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label" for="amount">Amount</label>
+                                <input id="amount" class="form-control" name="amount" type="number" [(ngModel)]="amount"
+                                    required min="0.01" step="0.01" placeholder="0.00">
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label" for="category">Category</label>
+                                <select id="category" class="form-select" name="category" [(ngModel)]="category">
+                                    @for (item of categories; track item) {
+                                    <option [value]="item">{{ item }}</option>
+                                    }
+                                </select>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label" for="date">Date</label>
+                                <input id="date" class="form-control" name="date" type="date" [(ngModel)]="date"
+                                    required>
+                            </div>
+
+                            <div class="col-12">
+                                <button class="btn btn-primary" type="submit" [disabled]="expenseForm.invalid">
+                                    Add expense
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+            <section>
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h2 class="h5 mb-0">Expenses</h2>
+                    <select class="form-select w-auto" aria-label="Filter by category" [ngModel]="filter()"
+                        (ngModelChange)="filter.set($event)">
+                        <option value="All">All categories</option>
+                        @for (item of categories; track item) {
+                        <option [value]="item">{{ item }}</option>
+                        }
+                    </select>
+                </div>
+
+                @if (filteredExpenses().length === 0) {
+                <p class="text-secondary">No expenses to show.</p>
+                } @else {
+                <div class="list-group">
+                    @for (expense of filteredExpenses(); track expense.id) {
+                    <article class="list-group-item d-flex justify-content-between
+                                  align-items-center gap-3">
+                        <div>
+                            <div class="fw-semibold">{{ expense.title }}</div>
+                            <small class="text-secondary">
+                                {{ expense.category }} · {{ expense.date }}
+                            </small>
+                        </div>
+                        <div class="d-flex align-items-center gap-3">
+                            <span class="fw-semibold">
+                                {{ expense.amount | currency:'INR' }}
+                            </span>
+                            <button class="btn btn-sm btn-outline-danger" type="button"
+                                [attr.aria-label]="'Delete ' + expense.title" (click)="deleteExpense(expense.id)">
+                                Delete
+                            </button>
+                        </div>
+                    </article>
+                    }
+                </div>
+                }
+            </section>
+        </div>
+    </div>
+</main>

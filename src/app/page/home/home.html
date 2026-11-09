@@ -1,85 +1,187 @@
-<div class="container">
-    <section class="py-5 text-center container">
-        <div class="row py-lg-5">
-            <div class="col-lg-6 col-md-8 mx-auto">
-                <h1 class="fw-light">{{ appTitle() }}</h1>
-                <p class="lead text-muted"> Using {{ angularVersion() }} with {{ bootstrapVersion() }} </p>
-                <p>
-                    <a href="https://angular.io/" target="_blank" rel="noopener noreferrer"
-                        class="btn my-2 btn-primary btn-lg px-4 me-md-2">Angular</a>
-                    <a href="https://getbootstrap.com/" target="_blank" rel="noopener noreferrer"
-                        class="btn my-2 btn-outline-secondary btn-lg px-4">Bootstrap 5</a>
-                </p>
+
+<div class="home-wrapper">
+    <section class="py-5 text-center hero-section position-relative overflow-hidden">
+        <div class="hero-glow position-absolute top-0 start-50 translate-middle-x"></div>
+        <div class="container py-lg-4 position-relative z-1">
+            <div class="row justify-content-center">
+                <div class="col-xl-7 col-lg-8 col-md-10 mx-auto">
+                   
+                    <h1 class="display-5 fw-bold tracking-tight mb-3 text-gradient">
+                        {{ appTitle() }}
+                    </h1>
+                    <p class="lead text-muted mb-4 px-md-3">
+                        A lightning-fast playground built using <span class="fw-semibold text-primary">{{
+                            angularVersion() }}</span> with <span class="fw-semibold text-dark">{{ bootstrapVersion()
+                            }}</span>.
+                    </p>
+
+                    <div class="d-flex justify-content-center flex-wrap gap-3">
+                        <a href="https://angular.io/" target="_blank" rel="noopener noreferrer"
+                            class="btn btn-primary btn-lg px-4 py-2 shadow-sm d-inline-flex align-items-center gap-2">
+                            <i class="bi bi-file-earmark-code"></i> Angular Docs
+                        </a>
+                        <a href="https://getbootstrap.com/" target="_blank" rel="noopener noreferrer"
+                            class="btn btn-outline-secondary btn-lg px-4 py-2 shadow-sm d-inline-flex align-items-center gap-2">
+                            <i class="bi bi-bootstrap"></i> Bootstrap 5
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5 features-section bg-body-tertiary border-top border-bottom">
+        <div class="container py-xxl-3">
+            <div class="row g-3 g-md-4 justify-content-center">
+                <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12">
+                    <a routerLink="/tip-calculator"
+                        class="btn btn-body shadow-sm w-100 py-3 px-3 fw-semibold hover-card d-flex align-items-center text-start">
+                        <span class="icon-wrapper d-flex align-items-center justify-content-center me-3 flex-shrink-0">
+                            <i class="bi bi-calculator fs-5"></i>
+                        </span>
+                        <span class="text-truncate">Tip Calculator</span>
+                    </a>
+                </div>
+
+               
+                <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12">
+                    <a routerLink="/testimonials"
+                        class="btn btn-body shadow-sm w-100 py-3 px-3 fw-semibold hover-card d-flex align-items-center text-start">
+                        <span class="icon-wrapper d-flex align-items-center justify-content-center me-3 flex-shrink-0">
+                            <i class="bi bi-chat-quote fs-5"></i>
+                        </span>
+                        <span class="text-truncate">Testimonials</span>
+                    </a>
+                </div>
+
+                
+                <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12">
+                    <a routerLink="/counter"
+                        class="btn btn-body shadow-sm w-100 py-3 px-3 fw-semibold hover-card d-flex align-items-center text-start">
+                        <span class="icon-wrapper d-flex align-items-center justify-content-center me-3 flex-shrink-0">
+                            <i class="bi bi-123 fs-5"></i>
+                        </span>
+                        <span class="text-truncate">Counter</span>
+                    </a>
+                </div>
+
+                
+                <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12">
+                    <a routerLink="/infinitescroll"
+                        class="btn btn-body shadow-sm w-100 py-3 px-3 fw-semibold hover-card d-flex align-items-center text-start">
+                        <span class="icon-wrapper d-flex align-items-center justify-content-center me-3 flex-shrink-0">
+                            <i class="bi bi-infinity fs-5"></i>
+                        </span>
+                        <span class="text-truncate">Infinite Scroll</span>
+                    </a>
+                </div>
+
+               
+                <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12">
+                    <a routerLink="/dragdrop"
+                        class="btn btn-body shadow-sm w-100 py-3 px-3 fw-semibold hover-card d-flex align-items-center text-start">
+                        <span class="icon-wrapper d-flex align-items-center justify-content-center me-3 flex-shrink-0">
+                            <i class="bi bi-grip-vertical fs-5"></i>
+                        </span>
+                        <span class="text-truncate">DragDrop</span>
+                    </a>
+                </div>
+
+                
+                <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12">
+                    <a routerLink="/passwordgenerator"
+                        class="btn btn-body shadow-sm w-100 py-3 px-3 fw-semibold hover-card d-flex align-items-center text-start">
+                        <span class="icon-wrapper d-flex align-items-center justify-content-center me-3 flex-shrink-0">
+                            <i class="bi bi-shield-lock fs-5"></i>
+                        </span>
+                        <span class="text-truncate">Password Generator</span>
+                    </a>
+                </div>
+
+                
+                <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12">
+                    <a routerLink="/currencyconverter"
+                        class="btn btn-body shadow-sm w-100 py-3 px-3 fw-semibold hover-card d-flex align-items-center text-start">
+                        <span class="icon-wrapper d-flex align-items-center justify-content-center me-3 flex-shrink-0">
+                            <i class="bi bi-currency-exchange fs-5"></i>
+                        </span>
+                        <span class="text-truncate">Currency Converter</span>
+                    </a>
+                </div>
+
+               
+                <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12">
+                    <a routerLink="/githubuserprofilefinder"
+                        class="btn btn-body shadow-sm w-100 py-3 px-3 fw-semibold hover-card d-flex align-items-center text-start">
+                        <span class="icon-wrapper d-flex align-items-center justify-content-center me-3 flex-shrink-0">
+                            <i class="bi bi-github fs-5"></i>
+                        </span>
+                        <span class="text-truncate">GitHub Profile Finder</span>
+                    </a>
+                </div>
+
+               
+                <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12">
+                    <a routerLink="/productlistsearchsortfilter"
+                        class="btn btn-body shadow-sm w-100 py-3 px-3 fw-semibold hover-card d-flex align-items-center text-start">
+                        <span class="icon-wrapper d-flex align-items-center justify-content-center me-3 flex-shrink-0">
+                            <i class="bi bi-filter-square fs-5"></i>
+                        </span>
+                        <span class="text-truncate">Product List & Filter</span>
+                    </a>
+                </div>
+
+                
+                <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12">
+                    <a routerLink="/crud-operation"
+                        class="btn btn-body shadow-sm w-100 py-3 px-3 fw-semibold hover-card d-flex align-items-center text-start">
+                        <span class="icon-wrapper d-flex align-items-center justify-content-center me-3 flex-shrink-0">
+                            <i class="bi bi-pencil-square fs-5"></i>
+                        </span>
+                        <span class="text-truncate">CRUD Operation</span>
+                    </a>
+                </div>
+
+            
+                <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12">
+                    <a routerLink="/dashboard"
+                        class="btn btn-body shadow-sm w-100 py-3 px-3 fw-semibold hover-card d-flex align-items-center text-start">
+                        <span class="icon-wrapper d-flex align-items-center justify-content-center me-3 flex-shrink-0">
+                            <i class="bi bi-speedometer2 fs-5"></i>
+                        </span>
+                        <span class="text-truncate">Dashboard</span>
+                    </a>
+                </div>
+
+                <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12">
+                    <a routerLink="/utilities"
+                        class="btn btn-body shadow-sm w-100 py-3 px-3 fw-semibold hover-card d-flex align-items-center text-start">
+                        <span class="icon-wrapper d-flex align-items-center justify-content-center me-3 flex-shrink-0">
+                            <i class="bi bi-tools fs-5"></i>
+                        </span>
+                        <span class="text-truncate">Utilities</span>
+                    </a>
+                </div>
+
+                <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12">
+                    <a routerLink="/expensetracker"
+                        class="btn btn-body shadow-sm w-100 py-3 px-3 fw-semibold hover-card d-flex align-items-center text-start">
+                        <span class="icon-wrapper d-flex align-items-center justify-content-center me-3 flex-shrink-0">
+                            <i class="bi bi-wallet2 fs-5"></i>
+                        </span>
+                        <span class="text-truncate">ExpenseTracker</span>
+                    </a>
+                </div>
+                <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12">
+                    <a routerLink="/randomuser"
+                        class="btn btn-body shadow-sm w-100 py-3 px-3 fw-semibold hover-card d-flex align-items-center text-start">
+                        <span class="icon-wrapper d-flex align-items-center justify-content-center me-3 flex-shrink-0">
+                            <i class="bi bi-wallet2 fs-5"></i>
+                        </span>
+                        <span class="text-truncate">Randomuser</span>
+                    </a>
+                </div>
             </div>
         </div>
     </section>
 </div>
-
-<section class="py-5 bg-body-tertiary">
-    <div class="container text-center">
-        <div class="row justify-content-center mt-4 mb-5">
-            <div class="col-12 col-md-3 mb-4">
-                <a routerLink="/tip-calculator" class="btn btn-body shadow-sm w-100 py-3 fw-semibold hover-card">
-                    <i class="bi bi-calculator me-2"></i>Tip Calculator
-                </a>
-            </div>
-            <div class="col-12 col-md-3 mb-4">
-                <a routerLink="/testimonials" class="btn btn-body shadow-sm w-100 py-3 fw-semibold hover-card">
-                    <i class="bi bi-chat-quote me-2"></i>Testimonials
-                </a>
-            </div>
-            <div class="col-12 col-md-3 mb-4">
-                <a routerLink="/counter" class="btn btn-body shadow-sm w-100 py-3 fw-semibold hover-card">
-                    <i class="bi bi-123 me-2"></i>Counter
-                </a>
-            </div>
-            <div class="col-12 col-md-3 mb-4">
-                <a routerLink="/infinitescroll" class="btn btn-body shadow-sm w-100 py-3 fw-semibold hover-card">
-                    <i class="bi bi-infinity me-2"></i>Infinite Scroll
-                </a>
-            </div>
-            <div class="col-12 col-md-3 mb-4">
-                <a routerLink="/dragdrop" class="btn btn-body shadow-sm w-100 py-3 fw-semibold hover-card">
-                    <i class="bi bi-grip-vertical me-2"></i>DragDrop
-                </a>
-            </div>
-            <div class="col-12 col-md-3 mb-4">
-                <a routerLink="/passwordgenerator" class="btn btn-body shadow-sm w-100 py-3 fw-semibold hover-card">
-                    <i class="bi bi-shield-lock me-2"></i>Password Generator
-                </a>
-            </div>
-            <div class="col-12 col-md-3 mb-4">
-                <a routerLink="/currencyconverter" class="btn btn-body shadow-sm w-100 py-3 fw-semibold hover-card">
-                    <i class="bi bi-currency-exchange me-2"></i>Currency Converter
-                </a>
-            </div>
-            <div class="col-12 col-md-3 mb-4">
-                <a routerLink="/githubuserprofilefinder"
-                    class="btn btn-body shadow-sm w-100 py-3 fw-semibold hover-card">
-                    <i class="bi bi-github me-2"></i>GitHub Profile Finder
-                </a>
-            </div>
-            <div class="col-12 col-md-3 mb-4">
-                <a routerLink="/productlistsearchsortfilter"
-                    class="btn btn-body shadow-sm w-100 py-3 fw-semibold hover-card">
-                    <i class="bi bi-filter-square me-2"></i>Product List & Filter
-                </a>
-            </div>
-            <div class="col-12 col-md-3 mb-4">
-                <a routerLink="/crud-operation" class="btn btn-body shadow-sm w-100 py-3 fw-semibold hover-card">
-                    <i class="bi bi-pencil-square me-2"></i>CRUD Operation
-                </a>
-            </div>
-            <div class="col-12 col-md-3 mb-4">
-                <a routerLink="/dashboard" class="btn btn-body shadow-sm w-100 py-3 fw-semibold hover-card">
-                    <i class="bi bi-speedometer2 me-2"></i>Dashboard
-                </a>
-            </div>
-            <div class="col-12 col-md-3 mb-4">
-                <a routerLink="/utilities" class="btn btn-body shadow-sm w-100 py-3 fw-semibold hover-card">
-                    <i class="bi bi-tools me-2"></i>Utilities
-                </a>
-            </div>
-        </div>
-    </div>
-</section>

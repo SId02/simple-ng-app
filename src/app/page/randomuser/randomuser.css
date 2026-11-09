@@ -1,0 +1,35 @@
+  .page-shell {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background-color: #f8f9fa;
+  }
+
+  .profile-card {
+      border: 1px solid #e2e8f0;
+      border-radius: 16px;
+      background: #fff;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+      transition: transform 0.2s ease-in-out,
+          box-shadow 0.2s ease-in-out,
+          border-color 0.2s ease-in-out;
+  }
+
+  .profile-card:hover {
+      transform: translateY(-4px);
+      border-color: #0d6efd;
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+  }
+
+  .profile-image {
+      width: 96px;
+      height: 96px;
+      object-fit: cover;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .footer-bar {
+      background-color: #f1f3f5;
+      border-top: 1px solid #e2e8f0;
+  }
